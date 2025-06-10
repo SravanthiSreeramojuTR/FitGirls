@@ -1,0 +1,591 @@
+/* ===== GLOBAL STYLES ===== */
+:root {
+    --primary-color: #ff5a5f;
+    --primary-dark: #e04347;
+    --secondary-color: #2ec4b6;
+    --accent-color: #fddb3a;
+    --dark-color: #333333;
+    --light-color: #f8f9fa;
+    --gray-color: #6c757d;
+    --light-gray: #e9ecef;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: #f5f5f5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.active-section {
+    display: block;
+}
+
+.hidden-section {
+    display: none;
+}
+
+/* ===== CONTAINER LAYOUT ===== */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== HEADER & FOOTER ===== */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.logo h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.logo i {
+    margin-right: 10px;
+}
+
+.tagline {
+    color: var(--gray-color);
+    font-size: 1.1rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px 0;
+    color: var(--gray-color);
+    border-top: 1px solid var(--light-gray);
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+#questionnaire-container, #results-container {
+    padding: 30px;
+}
+
+#questionnaire-container h2, #results-container h2 {
+    color: var(--dark-color);
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+#questionnaire-container > p, #results-container > p {
+    color: var(--gray-color);
+    margin-bottom: 30px;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-container {
+    margin-bottom: 40px;
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 16.66%; /* 1/6 for first step */
+    transition: width 0.3s ease;
+}
+
+.step-indicators {
+    display: flex;
+    justify-content: space-between;
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    color: var(--gray-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.step.completed {
+    background-color: var(--success-color);
+    color: white;
+}
+
+/* ===== FORM STEPS ===== */
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-step h3 {
+    margin-bottom: 20px;
+    color: var(--dark-color);
+    font-size: 1.5rem;
+}
+
+/* ===== FORM ELEMENTS ===== */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 90, 95, 0.2);
+}
+
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.radio-label, .checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    transition: all 0.3s;
+}
+
+.radio-label:hover, .checkbox-label:hover {
+    background-color: var(--light-gray);
+}
+
+.radio-label input, .checkbox-label input {
+    margin-right: 10px;
+}
+
+/* ===== CARD OPTIONS ===== */
+.card-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card-option {
+    flex: 1;
+    min-width: 200px;
+    cursor: pointer;
+}
+
+.card-option input {
+    display: none;
+}
+
+.card-content {
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--light-gray);
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.card-option input:checked + .card-content {
+    border-color: var(--primary-color);
+    background-color: rgba(255, 90, 95, 0.05);
+    box-shadow: var(--shadow);
+}
+
+.card-content i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.card-content h4 {
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.card-content p {
+    color: var(--gray-color);
+    font-size: 0.9rem;
+}
+
+/* ===== CHECKBOX CARDS ===== */
+.checkbox-group.goal-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.checkbox-card {
+    flex: 1;
+    min-width: 150px;
+    cursor: pointer;
+}
+
+.checkbox-card input {
+    display: none;
+}
+
+.checkbox-card .card-content {
+    padding: 15px;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--light-gray);
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.checkbox-card input:checked + .card-content {
+    border-color: var(--primary-color);
+    background-color: rgba(255, 90, 95, 0.05);
+    box-shadow: var(--shadow);
+}
+
+.checkbox-group.equipment-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+/* ===== NAVIGATION BUTTONS ===== */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+button {
+    cursor: pointer;
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.next-btn, .submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.next-btn:hover, .submit-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.prev-btn {
+    background-color: var(--light-gray);
+    color: var(--dark-color);
+}
+
+.prev-btn:hover {
+    background-color: #d8d8d8;
+}
+
+.secondary-btn {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    border: 1px solid var(--light-gray);
+}
+
+.secondary-btn:hover {
+    background-color: var(--light-gray);
+}
+
+.primary-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #25a99d;
+}
+
+/* ===== ERROR MESSAGES ===== */
+.error-message {
+    color: var(--danger-color);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* ===== RESULTS SECTION ===== */
+.results-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.results-content {
+    padding: 20px 0;
+}
+
+.profile-summary {
+    background-color: var(--light-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+}
+
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.profile-detail-item {
+    padding: 10px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.profile-detail-item h4 {
+    color: var(--gray-color);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.profile-detail-item p {
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+/* ===== PLAN TABS ===== */
+.plan-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--light-gray);
+    margin-bottom: 20px;
+}
+
+.plan-tab {
+    padding: 12px 25px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--gray-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.plan-tab:hover {
+    color: var(--primary-color);
+}
+
+.plan-tab.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.plan-panel {
+    display: none;
+}
+
+.plan-panel.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+/* ===== WORKOUT SCHEDULE ===== */
+.workout-day {
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.workout-day-header {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 15px 20px;
+    font-weight: 600;
+}
+
+.workout-exercises {
+    padding: 20px;
+}
+
+.exercise-item {
+    padding: 15px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.exercise-item:last-child {
+    border-bottom: none;
+}
+
+.exercise-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.exercise-details {
+    display: flex;
+    color: var(--gray-color);
+    font-size: 0.9rem;
+}
+
+.exercise-details span {
+    margin-right: 15px;
+}
+
+/* ===== NUTRITION PLAN ===== */
+.nutrition-section {
+    margin-bottom: 30px;
+}
+
+.nutrition-section h4 {
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.meal-plan {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.meal-type {
+    padding: 15px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.meal-type h5 {
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.meal-options {
+    padding-left: 20px;
+}
+
+.meal-option {
+    margin-bottom: 8px;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .card-options, .checkbox-group.goal-options {
+        flex-direction: column;
+    }
+    
+    .form-navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .prev-btn, .next-btn, .submit-btn {
+        width: 100%;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .plan-tabs {
+        flex-direction: column;
+    }
+    
+    .plan-tab {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .profile-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 10px;
+    }
+    
+    #questionnaire-container, #results-container {
+        padding: 15px;
+    }
+    
+    .logo h1 {
+        font-size: 2rem;
+    }
+}

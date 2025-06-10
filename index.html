@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitGirls - Personalized Fitness Plans</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <h1><i class="fas fa-dumbbell"></i> FitGirls</h1>
+            </div>
+            <p class="tagline">Your personalized fitness journey starts here</p>
+        </header>
+
+        <main>
+            <div id="questionnaire-container" class="active-section">
+                <h2>Fitness Profile Questionnaire</h2>
+                <p>Let's get to know you better to create your personalized fitness plan.</p>
+                
+                <form id="fitness-form">
+                    <!-- Progress indicator -->
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress" id="form-progress"></div>
+                        </div>
+                        <div class="step-indicators">
+                            <div class="step active" data-step="1">1</div>
+                            <div class="step" data-step="2">2</div>
+                            <div class="step" data-step="3">3</div>
+                            <div class="step" data-step="4">4</div>
+                            <div class="step" data-step="5">5</div>
+                            <div class="step" data-step="6">6</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Basic Info -->
+                    <div class="form-step active" id="step-1">
+                        <h3>Basic Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="height">Height (cm):</label>
+                            <input type="number" id="height" name="height" required min="100" max="250">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="weight">Weight (kg):</label>
+                            <input type="number" id="weight" name="weight" required min="30" max="250">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="age">Age:</label>
+                            <input type="number" id="age" name="age" required min="16" max="100">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Gender:</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="female" checked>
+                                    Female
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="male">
+                                    Male
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="other">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Fitness Level -->
+                    <div class="form-step" id="step-2">
+                        <h3>Fitness Level Assessment</h3>
+                        
+                        <div class="form-group">
+                            <label>How would you describe your current fitness level?</label>
+                            <div class="card-options">
+                                <label class="card-option">
+                                    <input type="radio" name="fitness-level" value="beginner" required>
+                                    <div class="card-content">
+                                        <i class="fas fa-seedling"></i>
+                                        <h4>Beginner</h4>
+                                        <p>New to fitness or returning after a long break</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="card-option">
+                                    <input type="radio" name="fitness-level" value="intermediate">
+                                    <div class="card-content">
+                                        <i class="fas fa-running"></i>
+                                        <h4>Intermediate</h4>
+                                        <p>Consistent with exercise for 3-6 months</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="card-option">
+                                    <input type="radio" name="fitness-level" value="advanced">
+                                    <div class="card-content">
+                                        <i class="fas fa-fire"></i>
+                                        <h4>Advanced</h4>
+                                        <p>Regularly active for 6+ months with good form</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>How many days per week do you currently exercise?</label>
+                            <select id="exercise-frequency" name="exercise-frequency" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="0">0 days (Not currently exercising)</option>
+                                <option value="1-2">1-2 days per week</option>
+                                <option value="3-4">3-4 days per week</option>
+                                <option value="5+">5+ days per week</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Fitness Goals -->
+                    <div class="form-step" id="step-3">
+                        <h3>Fitness Goals</h3>
+                        
+                        <div class="form-group">
+                            <label>What are your primary fitness goals? (Select up to 2)</label>
+                            <div class="checkbox-group goal-options">
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="goals" value="weight-loss" class="goal-checkbox">
+                                    <div class="card-content">
+                                        <i class="fas fa-weight"></i>
+                                        <h4>Weight Loss</h4>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="goals" value="strength" class="goal-checkbox">
+                                    <div class="card-content">
+                                        <i class="fas fa-dumbbell"></i>
+                                        <h4>Build Strength</h4>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="goals" value="endurance" class="goal-checkbox">
+                                    <div class="card-content">
+                                        <i class="fas fa-heartbeat"></i>
+                                        <h4>Improve Endurance</h4>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="goals" value="tone" class="goal-checkbox">
+                                    <div class="card-content">
+                                        <i class="fas fa-female"></i>
+                                        <h4>Tone & Sculpt</h4>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="goals" value="mobility" class="goal-checkbox">
+                                    <div class="card-content">
+                                        <i class="fas fa-child"></i>
+                                        <h4>Improve Mobility</h4>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="goals" value="health" class="goal-checkbox">
+                                    <div class="card-content">
+                                        <i class="fas fa-heart"></i>
+                                        <h4>General Health</h4>
+                                    </div>
+                                </label>
+                            </div>
+                            <p id="goal-error" class="error-message hidden">Please select at least one goal (maximum 2)</p>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Equipment -->
+                    <div class="form-step" id="step-4">
+                        <h3>Equipment Inventory</h3>
+                        <p>Select all equipment you have access to:</p>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group equipment-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="none">
+                                    <span>No equipment (bodyweight only)</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="dumbbells">
+                                    <span>Dumbbells</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="resistance-bands">
+                                    <span>Resistance Bands</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="kettlebells">
+                                    <span>Kettlebells</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="bench">
+                                    <span>Workout Bench</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="barbell">
+                                    <span>Barbell & Weights</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="pull-up-bar">
+                                    <span>Pull-up Bar</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="treadmill">
+                                    <span>Treadmill</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="exercise-bike">
+                                    <span>Exercise Bike</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="elliptical">
+                                    <span>Elliptical</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="yoga-mat">
+                                    <span>Yoga Mat</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="equipment" value="gym-membership">
+                                    <span>Full Gym Membership</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Injuries/Limitations -->
+                    <div class="form-step" id="step-5">
+                        <h3>Injuries & Limitations</h3>
+                        
+                        <div class="form-group">
+                            <label>Do you have any injuries or physical limitations we should be aware of?</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="has-injuries" value="yes">
+                                    Yes
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="has-injuries" value="no" checked>
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="injuries-container" class="hidden">
+                            <div class="form-group">
+                                <label>Select all that apply:</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="knee">
+                                        <span>Knee issues</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="back">
+                                        <span>Back pain/injury</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="shoulder">
+                                        <span>Shoulder issues</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="wrist">
+                                        <span>Wrist pain/limitations</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="ankle">
+                                        <span>Ankle issues</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="hip">
+                                        <span>Hip problems</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="neck">
+                                        <span>Neck pain/issues</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="joint">
+                                        <span>Joint pain/arthritis</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="balance">
+                                        <span>Balance/coordination issues</span>
+                                    </label>
+                                    
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="limitations" value="cardio">
+                                        <span>Cardiovascular limitations</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="injury-details">Please provide any additional details about your injuries/limitations:</label>
+                                <textarea id="injury-details" name="injury-details" rows="3"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: Availability/Schedule -->
+                    <div class="form-step" id="step-6">
+                        <h3>Availability & Schedule</h3>
+                        
+                        <div class="form-group">
+                            <label>How many days per week can you commit to working out?</label>
+                            <select id="workout-days" name="workout-days" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="2">2 days per week</option>
+                                <option value="3">3 days per week</option>
+                                <option value="4">4 days per week</option>
+                                <option value="5">5 days per week</option>
+                                <option value="6">6+ days per week</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>What time of day do you prefer to exercise?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="workout-time" value="morning">
+                                    <span>Morning (5am-9am)</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="workout-time" value="midday">
+                                    <span>Midday (9am-2pm)</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="workout-time" value="afternoon">
+                                    <span>Afternoon (2pm-5pm)</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="workout-time" value="evening">
+                                    <span>Evening (5pm-9pm)</span>
+                                </label>
+                                
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="workout-time" value="night">
+                                    <span>Night (9pm-12am)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>How much time can you dedicate to each workout session?</label>
+                            <select id="workout-duration" name="workout-duration" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="15-30">15-30 minutes</option>
+                                <option value="30-45">30-45 minutes</option>
+                                <option value="45-60">45-60 minutes</option>
+                                <option value="60+">60+ minutes</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button type="button" id="generate-plan-btn" class="submit-btn">Generate My Plan <i class="fas fa-check-circle"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Results Section -->
+            <div id="results-container" class="hidden-section">
+                <div class="results-header">
+                    <h2>Your Personalized Fitness Plan</h2>
+                    <p>Based on your profile, we've created a customized workout and nutrition plan to help you reach your goals.</p>
+                    <button id="back-to-form-btn" class="secondary-btn"><i class="fas fa-arrow-left"></i> Edit My Profile</button>
+                </div>
+                
+                <div class="results-content">
+                    <div class="profile-summary">
+                        <h3>Your Profile Summary</h3>
+                        <div id="profile-details" class="profile-details">
+                            <!-- Profile details will be inserted here by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="plan-container">
+                        <div class="plan-tabs">
+                            <button class="plan-tab active" data-tab="workout">Workout Plan</button>
+                            <button class="plan-tab" data-tab="nutrition">Nutrition Plan</button>
+                        </div>
+                        
+                        <div class="plan-content">
+                            <div id="workout-plan" class="plan-panel active">
+                                <h3>Your Customized Workout Plan</h3>
+                                <div id="workout-schedule">
+                                    <!-- Workout schedule will be inserted here by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <div id="nutrition-plan" class="plan-panel">
+                                <h3>Your Customized Nutrition Plan</h3>
+                                <div id="nutrition-guidelines">
+                                    <!-- Nutrition guidelines will be inserted here by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="print-plan-btn" class="primary-btn"><i class="fas fa-print"></i> Print Plan</button>
+                        <button id="email-plan-btn" class="primary-btn"><i class="fas fa-envelope"></i> Email Plan</button>
+                        <button id="save-plan-btn" class="primary-btn"><i class="fas fa-save"></i> Save Plan</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 FitGirls. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
